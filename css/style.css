@@ -1,0 +1,116 @@
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    /*width: 65rem;*/
+    width: 90%;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* Header styles */
+
+header {
+    height: 6rem;
+}
+h1 {
+    font-size: 4rem;
+}
+
+/* Waitstaff calculator section */
+
+
+/*.waitstaff-calculator {
+    clear: both;
+}*/
+
+
+/************** Meal details CSS **************/
+
+.meal-details {
+    border: 1px solid #000;
+    width: 45%;
+    height: 20rem;
+    /*float: left;*/
+    display: block;
+    margin: 2rem auto;
+}
+.meal-details h2,
+.customer-charges h2,
+.earnings-info h2 {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #000;
+}
+.inputDetails {
+    text-align: center;
+    display: block;
+    width: 75%;
+    margin: 0.75rem auto;
+}
+
+/******************* Common CSS ******************/
+
+.inputDetails input,
+.inputDetails label,
+.inputDetails .inputLabel,
+.inputDetails .inputValue {
+    display: inline-block;
+}
+.inputDetails label,
+.inputDetails .inputLabel,
+.inputDetails .inputValue {
+    width: 11rem;
+    text-align: left;
+    font-size: 1.15rem;
+}
+.inputDetails .inputValue {
+    text-align: right;
+}
+.inputDetails input {
+    padding: 0.4rem;
+}
+#submitButton,
+#cancelButton,
+#resetButton {
+    font-size: 1rem;
+    margin: 0.75rem;
+    padding: 0.4rem;
+    background-color: #D8D8D8;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+/******************* Customer charges CSS *******************/
+
+.customer-charges {
+    border: 1px solid #000;
+    width: 40%;
+    height: 17rem;
+    /*float: right;*/
+    display: inline-block;
+    margin-right: 1rem;
+}
+hr {
+    width: 75%;
+}
+
+/******************** Earnings Info CSS *********************/
+
+.earnings-info {
+    border: 1px solid #000;
+    width: 40%;
+    height: 17rem;
+    /*float: right;
+    clear: right;*/
+    display: inline-block;
+    margin-left: 1rem;
+}
+.buttonReset {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
