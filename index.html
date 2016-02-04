@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="UTF-8">
@@ -10,28 +10,28 @@
     <script src="js/app.js"></script>
 </head>
 
-<body>
+<body ng-controller="myCtrl">
     <header>
         <h1>Waitstaff Calculator</h1>
     </header>
     <section class="waitstaff-calculator">
         <div class="meal-details">
-            <form name="enterDetails">
+            <form name="enterDetails" ng-submit="submitted=true;completeTransaction()">
                 <h2>Enter the Meal Details</h2>
                 <div class="inputDetails">
                     <label>Base Meal Price: $</label>
-                    <input type="number" name="mealPrice" placeholder="0" required>
+                    <input type="number" name="mealPrice" ng-model="mealPrice" placeholder="0" required>
                 </div>
                 <div class="inputDetails">
                     <label>Tax Rate: %</label>
-                    <input type="number" name="taxRate" placeholder="0" required>
+                    <input type="number" name="taxRate" ng-model="taxRate" placeholder="0" required>
                 </div>
                 <div class="inputDetails">
                     <label>Tip Percentage: %</label>
-                    <input type="number" name="tipPercent" placeholder="0" required>
+                    <input type="number" name="tipPercent" ng-model="tipPercent" placeholder="0" required>
                 </div>
                 <div class="inputDetails">
-                    <button id="submitButton">Submit</button>
+                    <button id="submitButton" ng-click="completeTransaction()">Submit</button>
                     <button id="cancelButton">Cancel</button>
                 </div>
             </form>
@@ -39,32 +39,31 @@
         <div class="customer-charges">
             <h2>Customer Charges</h2>
             <div class="inputDetails">
-                <div class="inputLabel" id="subtotal">Subtotal</div>
-                <div class="inputValue" id="subtotalValue">0.00</div>
+                <div class="inputLabel">Subtotal</div>
+                <div class="inputValue" id="subtotalValue" ng-model="subTotal">0.00</div>
+            </div>
+            <div class="inputDetails horizontal">
+                <div class="inputLabel">Tip</div>
+                <div class="inputValue" id="tipValue" ng-model="tipValue">0.00</div>
             </div>
             <div class="inputDetails">
-                <div class="inputLabel" id="tip">Tip</div>
-                <div class="inputValue" id="tipValue">0.00</div>
-            </div>
-            <hr>
-            <div class="inputDetails">
-                <div class="inputLabel" id="total">Total</div>
-                <div class="inputValue" id="totalValue">0.00</div>
+                <div class="inputLabel">Total</div>
+                <div class="inputValue" id="totalValue" ng-model="totalValue">0.00</div>
             </div>
         </div>
         <div class="earnings-info">
             <h2>My Earnings Info</h2>
             <div class="inputDetails">
-                <div class="inputLabel" id="tipTotal">Tip Total</div>
-                <div class="inputValue" id="tipTotalValue">0.00</div>
+                <div class="inputLabel">Tip Total</div>
+                <div class="inputValue" id="tipTotalValue" ng-model="tipTotalValue">0.00</div>
             </div>
             <div class="inputDetails">
-                <div class="inputLabel" id="mealCount">Meal Count</div>
-                <div class="inputValue" id="mealCountValue">0.00</div>
+                <div class="inputLabel">Meal Count</div>
+                <div class="inputValue" id="mealCount" ng-model="mealCount">0</div>
             </div>
             <div class="inputDetails">
-                <div class="inputLabel" id="avgTip">Average Tip per Meal</div>
-                <div class="inputValue" id="avgTipValue">0.00</div>
+                <div class="inputLabel">Average Tip per Meal</div>
+                <div class="inputValue" id="avgTipValue" ng-model="avgTipValue">0.00</div>
             </div>
         </div>
         <div class="buttonReset">

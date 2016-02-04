@@ -36,7 +36,7 @@ h1 {
     height: 18rem;
     /*float: left;*/
     display: block;
-    margin: 0.5rem auto 1rem auto;
+    margin: 0.5rem auto 1.65rem auto;
 }
 .meal-details h2,
 .customer-charges h2,
@@ -92,11 +92,11 @@ h1 {
     display: inline-block;
     margin-right: 1rem;
 }
-hr {
-    width: 75%;
+.horizontal {
+    border-bottom: 1px solid #000;
 }
 .buttonReset {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 0.5rem;
 }
