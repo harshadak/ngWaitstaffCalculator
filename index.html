@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <title>Waitstaff Calculator</title>
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
-    <script src="https://code.angularjs.org/1.3.10/angular.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <script src="js/app.js"></script>
 </head>
@@ -16,7 +18,7 @@
     </header>
     <section class="waitstaff-calculator">
         <div class="meal-details">
-            <form name="enterDetails" ng-submit="submitted=true;completeTransaction()">
+            <form name="enterDetails" id="enterDetails">
                 <h2>Enter the Meal Details</h2>
                 <div class="inputDetails">
                     <label>Base Meal Price: $</label>
@@ -32,7 +34,7 @@
                 </div>
                 <div class="inputDetails">
                     <button id="submitButton" ng-click="completeTransaction()">Submit</button>
-                    <button id="cancelButton">Cancel</button>
+                    <button id="cancelButton" ng-click="cancelTransaction()">Cancel</button>
                 </div>
             </form>
         </div>
@@ -40,34 +42,34 @@
             <h2>Customer Charges</h2>
             <div class="inputDetails">
                 <div class="inputLabel">Subtotal</div>
-                <div class="inputValue" id="subtotalValue" ng-model="subTotal">0.00</div>
+                <div class="inputValue" id="subtotalValue" ng-model="subTotal">{{subTotal | currency}}</div>
             </div>
             <div class="inputDetails horizontal">
                 <div class="inputLabel">Tip</div>
-                <div class="inputValue" id="tipValue" ng-model="tipValue">0.00</div>
+                <div class="inputValue" id="tipValue" ng-model="tipValue">{{tipValue | currency}}</div>
             </div>
             <div class="inputDetails">
                 <div class="inputLabel">Total</div>
-                <div class="inputValue" id="totalValue" ng-model="totalValue">0.00</div>
+                <div class="inputValue" id="totalValue" ng-model="totalValue">{{totalValue | currency}}</div>
             </div>
         </div>
         <div class="earnings-info">
             <h2>My Earnings Info</h2>
             <div class="inputDetails">
                 <div class="inputLabel">Tip Total</div>
-                <div class="inputValue" id="tipTotalValue" ng-model="tipTotalValue">0.00</div>
+                <div class="inputValue" id="tipTotalValue" ng-model="tipTotalValue">{{tipTotalValue | currency}}</div>
             </div>
             <div class="inputDetails">
                 <div class="inputLabel">Meal Count</div>
-                <div class="inputValue" id="mealCount" ng-model="mealCount">0</div>
+                <div class="inputValue" id="mealCount" ng-model="mealCount">{{mealCount}}</div>
             </div>
             <div class="inputDetails">
                 <div class="inputLabel">Average Tip per Meal</div>
-                <div class="inputValue" id="avgTipValue" ng-model="avgTipValue">0.00</div>
+                <div class="inputValue" id="avgTipValue" ng-model="avgTipValue">{{avgTipValue | currency}}</div>
             </div>
         </div>
         <div class="buttonReset">
-            <button id="resetButton">Reset</button>
+            <button id="resetButton" ng-click="resetTransaction()">Reset</button>
         </div>
     </section>
 

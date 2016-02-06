@@ -82,6 +82,12 @@ h1 {
     background-color: #D8D8D8;
     border: none;
     border-radius: 0.25rem;
+    outline: none;
+}
+#submitButton:hover,
+#cancelButton:hover,
+#resetButton:hover {
+    cursor: pointer;
 }
 .customer-charges,
 .earnings-info {
