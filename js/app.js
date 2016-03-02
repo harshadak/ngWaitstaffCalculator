@@ -1,5 +1,23 @@
-angular.module('myApp', [])
-    .controller('myCtrl', function ($scope, $rootScope) {
+angular.module('myApp', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/', {
+                templateUrl: './home.html',
+                controller: 'MealCtrl'
+            })
+            .when('/New-meal', {
+                templateUrl: './new_meal.html',
+                controller: 'MealCtrl'
+            })
+            .when('/My-earnings', {
+                templateUrl: './my_earnings.html',
+                controller: 'EarningsCtrl'
+            })
+            .otherwise('/', {
+                templateUrl: './home.html',
+                controller: 'MealCtrl'
+            });
+    }])
+    .controller('MealCtrl', function ($scope, $rootScope) {
         $scope.i = 0;
         // Declaration of all the inputs- Meal details
         $scope.mealPrice;
@@ -12,9 +30,10 @@ angular.module('myApp', [])
         $scope.totalValue = 0; // Total value of meal price, tax and tip
 
         // My earnings info
-        $rootScope.tipTotalValue = 0; // Total tip for all the meals
-        $scope.mealCount = 0; // No of meals
-        $scope.avgTipValue = 0;
+        $rootScope.earnings = {};
+        $rootScope.earnings.tipTotalValue = 0; // Total tip for all the meals
+        $scope.earnings.mealCount = 0; // No of meals
+        $scope.earnings.avgTipValue = 0;
 
         $scope.completeTransaction = function () {
             $scope.subTotal = ($scope.mealPrice + ($scope.taxRate * 0.01 * $scope.mealPrice));
@@ -22,13 +41,13 @@ angular.module('myApp', [])
             $scope.totalValue = $scope.subTotal + $scope.tipValue;
 
             if ($scope.i === 0) { // For the first meal
-                $rootScope.tipTotalValue = $scope.tipValue;
+                $rootScope.earnings.tipTotalValue = $scope.tipValue;
             } else {
-                $rootScope.tipTotalValue += $scope.tipValue;
+                $rootScope.earnings.tipTotalValue += $scope.tipValue;
             }
             $scope.i++;
-            $scope.mealCount = $scope.i;
-            $scope.avgTipValue = $rootScope.tipTotalValue / $scope.mealCount;
+            $scope.earnings.mealCount = $scope.i;
+            $scope.earnings.avgTipValue = $rootScope.earnings.tipTotalValue / $scope.earnings.mealCount;
         };
 
         $scope.cancelTransaction = function () {
@@ -39,7 +58,7 @@ angular.module('myApp', [])
             $scope.tipPercent = 0;
         };
 
-        $scope.resetTransaction = function () {
+        /*$scope.resetTransaction = function () {
             document.getElementById("enterDetails").reset();
             $scope.mealPrice = 0;
             $scope.taxRate = 0;
@@ -47,10 +66,30 @@ angular.module('myApp', [])
             $scope.subTotal = 0;
             $scope.tipValue = 0;
             $scope.totalValue = 0;
-            $rootScope.tipTotalValue = 0;
-            $scope.mealCount = 0;
-            $scope.avgTipValue = 0;
+            $rootScope.earnings.tipTotalValue = 0;
+            $scope.earnings.mealCount = 0;
+            $scope.earnings.avgTipValue = 0;
             $scope.i = 0;
             $scope.form.$submitted = false;
+        };*/
+    })
+    .controller('EarningsCtrl', function ($scope, $rootScope) {
+        $rootScope.earnings;
+        /*$scope.resetTransaction = function () {
+            document.getElementById("enterDetails").reset();
+            $scope.mealPrice = 0;
+            $scope.taxRate = 0;
+            $scope.tipPercent = 0;
+            $scope.subTotal = 0;
+            $scope.tipValue = 0;
+            $scope.totalValue = 0;
+            $rootScope.earnings.tipTotalValue = 0;
+            $scope.earnings.mealCount = 0;
+            $scope.earnings.avgTipValue = 0;
+            $scope.i = 0;
+            $scope.form.$submitted = false;
+        };*/
+        $scope.resetTransaction = function () {
+            $rootScope.earnings = {};
         }
     });
