@@ -1,4 +1,17 @@
-angular.module('myApp', ['ngRoute'])
+angular.module('myApp', ['ngRoute', 'ngAnimate'])
+    .run(function ($rootScope, $location, $timeout) {
+        $rootScope.$on('$routeChangeError', function () {
+            $location.path("/error");
+        });
+        $rootScope.$on('$routeChangeStart', function () {
+            $rootScope.isLoading = true;
+        });
+        $rootScope.$on('$routeChangeSuccess', function () {
+            $timeout(function () {
+                $rootScope.isLoading = false;
+            }, 1000);
+        });
+    })
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {
                 templateUrl: './home.html',
@@ -57,38 +70,9 @@ angular.module('myApp', ['ngRoute'])
             $scope.taxRate = 0;
             $scope.tipPercent = 0;
         };
-
-        /*$scope.resetTransaction = function () {
-            document.getElementById("enterDetails").reset();
-            $scope.mealPrice = 0;
-            $scope.taxRate = 0;
-            $scope.tipPercent = 0;
-            $scope.subTotal = 0;
-            $scope.tipValue = 0;
-            $scope.totalValue = 0;
-            $rootScope.earnings.tipTotalValue = 0;
-            $scope.earnings.mealCount = 0;
-            $scope.earnings.avgTipValue = 0;
-            $scope.i = 0;
-            $scope.form.$submitted = false;
-        };*/
     })
     .controller('EarningsCtrl', function ($scope, $rootScope) {
         $rootScope.earnings;
-        /*$scope.resetTransaction = function () {
-            document.getElementById("enterDetails").reset();
-            $scope.mealPrice = 0;
-            $scope.taxRate = 0;
-            $scope.tipPercent = 0;
-            $scope.subTotal = 0;
-            $scope.tipValue = 0;
-            $scope.totalValue = 0;
-            $rootScope.earnings.tipTotalValue = 0;
-            $scope.earnings.mealCount = 0;
-            $scope.earnings.avgTipValue = 0;
-            $scope.i = 0;
-            $scope.form.$submitted = false;
-        };*/
         $scope.resetTransaction = function () {
             $rootScope.earnings = {};
         }
